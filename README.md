@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Cloud Resources Project
 
 ## Project info
 
