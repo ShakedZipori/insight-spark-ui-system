@@ -188,6 +188,7 @@ export const mockRules: RuleDefinition[] = [
     suggestedAction: 'Alert',
     description: 'Alert when CPU usage exceeds 80% for 15 minutes',
     isActive: true,
+    ruleType: 'Rule-based', // Added the required field
   },
   {
     id: '2',
@@ -197,6 +198,7 @@ export const mockRules: RuleDefinition[] = [
     suggestedAction: 'Shutdown',
     description: 'Recommend shutdown for VMs with consistently low CPU usage',
     isActive: true,
+    ruleType: 'Rule-based', // Added the required field
   },
 ];
 
