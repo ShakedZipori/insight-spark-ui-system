@@ -15,14 +15,14 @@ const currentUser = {
   id: 'user-1',
   name: 'John Doe',
   team: 'DevOps' as TeamType, // User's team
-  isAdmin: false // Whether the user is an admin
+  isAdmin: true // Set to true so everyone can create rules
 };
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
-  const [filteredRecommendations, setFilteredRecommendations] = useState<Recommendation[]>([]);
+  const [recommendations, setRecommendations] = useState<Recommendation[]>(mockRecommendations);
+  const [filteredRecommendations, setFilteredRecommendations] = useState<Recommendation[]>(mockRecommendations);
   const [selectedRecommendation, setSelectedRecommendation] = useState<Recommendation | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [filters, setFilters] = useState({
@@ -34,20 +34,6 @@ const Dashboard: React.FC = () => {
     team: 'All',
     wallet: 'All',
   });
-
-  // Initialize recommendations based on user's team access
-  useEffect(() => {
-    // If admin, show all recommendations
-    // If team member, only show recommendations for their team or unassigned (All Teams)
-    const accessibleRecommendations = currentUser.isAdmin 
-      ? mockRecommendations
-      : mockRecommendations.filter(rec => 
-          rec.team === currentUser.team || rec.team === 'All Teams' || !rec.team
-        );
-    
-    setRecommendations(accessibleRecommendations);
-    setFilteredRecommendations(accessibleRecommendations);
-  }, []);
 
   // Filter recommendations when filters change
   useEffect(() => {
@@ -125,11 +111,9 @@ const Dashboard: React.FC = () => {
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Your System Recommendations</h1>
-        {currentUser.isAdmin && (
-          <Button onClick={() => navigate('/new-rule')}>
-            <Plus className="mr-2 h-4 w-4" /> Create Rule
-          </Button>
-        )}
+        <Button onClick={() => navigate('/new-rule')}>
+          <Plus className="mr-2 h-4 w-4" /> Create Rule
+        </Button>
       </div>
       
       <FilterBar 

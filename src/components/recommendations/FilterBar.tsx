@@ -66,7 +66,9 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange, onResetF
           </SelectTrigger>
           <SelectContent>
             {sourceTypeOptions.map((option) => (
-              <SelectItem key={option} value={option}>{option}</SelectItem>
+              <SelectItem key={option} value={option}>
+                {option === 'All' ? 'All Source Types' : option}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -82,7 +84,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange, onResetF
           <SelectContent>
             {urgencyOptions.map((option) => (
               <SelectItem key={option} value={option}>
-                {option === 'All' ? 'All' : option.charAt(0).toUpperCase() + option.slice(1)}
+                {option === 'All' ? 'All Urgency Levels' : option.charAt(0).toUpperCase() + option.slice(1)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -98,7 +100,9 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange, onResetF
           </SelectTrigger>
           <SelectContent>
             {teamOptions.map((option) => (
-              <SelectItem key={option} value={option}>{option}</SelectItem>
+              <SelectItem key={option} value={option}>
+                {option === 'All' ? 'All Teams' : option}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -113,7 +117,9 @@ const FilterBar: React.FC<FilterBarProps> = ({ filters, onFilterChange, onResetF
           </SelectTrigger>
           <SelectContent>
             {walletOptions.map((option) => (
-              <SelectItem key={option} value={option}>{option}</SelectItem>
+              <SelectItem key={option} value={option}>
+                {option === 'All' ? 'All Wallets' : option}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
