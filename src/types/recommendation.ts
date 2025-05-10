@@ -7,6 +7,9 @@ export type TeamType = 'DevOps' | 'Infrastructure' | 'Security' | 'Data' | 'All 
 export type WalletType = 'Production' | 'Development' | 'Testing' | 'Shared Services';
 export type ActionType = 'Resize' | 'Shutdown' | 'Upgrade' | 'Reconfigure' | 'Alert';
 
+// New addition: RuleType to distinguish between AI and Rule-based recommendations
+export type RuleType = 'Rule-based' | 'AI-based';
+
 export interface Recommendation {
   id: string;
   title: string;
@@ -33,6 +36,11 @@ export interface RuleDefinition {
   suggestedAction: ActionType;
   description: string;
   isActive: boolean;
+  // New additions
+  ruleType: RuleType;
+  targetTeam?: TeamType;
+  targetWallet?: WalletType;
+  conditionDetails?: string;
 }
 
 // Filter types for recommendations
